@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t yukapooka/react-test -f ./client/Dockerfile.dev ./client/
+  - docker build -t ysuzuki87/react-test -f ./client/Dockerfile.dev ./client/
 
 script:
-  - docker run yukapooka/react-test npm test -- --coverage
+  - docker run ysuzuki87/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t yukapooka/multi-client ./client
-  - docker build -t yukapooka/multi-nginx ./nginx
-  - docker build -t yukapooka/multi-server ./server
-  - docker build -t yukapooka/multi-worker ./worker
+  - docker build -t ysuzuki87/multi-client ./client
+  - docker build -t ysuzuki87/multi-nginx ./nginx
+  - docker build -t ysuzuki87/multi-server ./server
+  - docker build -t ysuzuki87/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Take those images and push them to docker hub
-  - docker push yukapooka/multi-client
-  - docker push yukapooka/multi-nginx
-  - docker push yukapooka/multi-server
-  - docker push yukapooka/multi-worker
+  - docker push ysuzuki87/multi-client
+  - docker push ysuzuki87/multi-nginx
+  - docker push ysuzuki87/multi-server
+  - docker push ysuzuki87/multi-worker
